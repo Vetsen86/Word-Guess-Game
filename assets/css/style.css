@@ -1,3 +1,39 @@
 body {
     font-family: 'Press Start 2P', cursive;
+    background-color: black;
+    color: white;
+}
+
+img {
+    width: 70%;
+    margin: 20px auto;
+    display: block;
+    height: 100px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin: .75em 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin: .67em 0;
+}
+
+#hangman {
+    text-align: center;
+    margin-top: 100px;
+}
+
+#guesses {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#container {
+    display: flex;
+    justify-content: space-around;
 }
