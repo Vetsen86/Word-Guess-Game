@@ -66,31 +66,6 @@ function win() {
 
 function guess(word, spaces, key) {
     //First I should compare the key pressed to the word
-    
-    /*if (word.includes(key)) {
-        spaces[word.indexOf(key)] = key;
-        document.getElementById("spaces").innerHTML = spaces.join(' ');
-        rightArray.push(key);
-        guesses -= 1;
-        rightGuesses += 1;
-        document.getElementById("left").innerHTML = guesses;
-        if (rightGuesses === word.length) {
-            win();
-        } else if (guesses === 0) {
-            lose();
-        }
-    } else {
-        if (!guessArray.includes(key)) {
-            guessArray.push(key);
-            document.getElementById("guess").innerHTML = guessArray.join(", ");
-            guesses -= 1;
-            document.getElementById("left").innerHTML = guesses;
-            if (guesses === 0) {
-                lose();
-            }
-        }
-
-    }*/
     if (word.includes(key)) {
         for (i = 0; i < word.length; i++) {
             if (word[i] === key) {
