@@ -1,5 +1,6 @@
 // First, I need to create an array of strings that will represent my words. 10 should suffice.
-var words = ["halo", "persona", "pacman", "mario", "zelda", "metroid", "sword", "lives", "diablo", "monster"];
+var words = ["halo", "persona", "pacman", "mario", "zelda", "metroid", "sword", "lives", "diablo", "monsters", 
+    "battlefield"];
 
 
 //Then I need to get a random word from the array.
@@ -40,6 +41,7 @@ function lose() {
     word = getWord();
     spaces = getSpaces(word);
     guessArray = [];
+    rightArray = [];
     guesses = word.length + 4;
     document.getElementById("left").innerHTML = guesses;
     document.getElementById("guess").innerHTML = guessArray.join(", ");
@@ -52,6 +54,7 @@ function win() {
     word = getWord();
     spaces = getSpaces(word);
     guessArray = [];
+    rightArray = [];
     guesses = word.length + 4;
     document.getElementById("left").innerHTML = guesses;
     document.getElementById("guess").innerHTML = guessArray.join(", ");
@@ -64,7 +67,7 @@ function win() {
 function guess(word, spaces, key) {
     //First I should compare the key pressed to the word
     
-    if (word.includes(key)) {
+    /*if (word.includes(key)) {
         spaces[word.indexOf(key)] = key;
         document.getElementById("spaces").innerHTML = spaces.join(' ');
         rightArray.push(key);
@@ -87,6 +90,43 @@ function guess(word, spaces, key) {
             }
         }
 
+    }*/
+    if (word.includes(key)) {
+        for (i = 0; i < word.length; i++) {
+            if (word[i] === key) {
+                spaces[i] = key;
+                document.getElementById("spaces").innerHTML = spaces.join(" ");
+                rightGuesses += 1;
+            }
+        }
+        guesses -= 1;
+        document.getElementById("left").innerHTML = guesses;
+        
+        if (!rightArray.includes(key)) {
+            rightArray.push(key);
+            console.log(rightArray);
+        } else {
+            guesses += 1;
+            document.getElementById("left").innerHTML = guesses;
+            rightGuesses -= 1;
+            console.log(guesses);
+            console.log(rightGuesses);
+        }
+        
+        if (rightGuesses === word.length) {
+            win();
+        } else if (guesses === 0) {
+            lose();
+        }
+
+    } else if (!guessArray.includes(key)) {
+        guessArray.push(key);
+        document.getElementById("guess").innerHTML = guessArray.join(", ");
+        guesses -= 1;
+        document.getElementById("left").innerHTML = guesses;
+        if (guesses === 0) {
+            lose();
+        }
     }
 }
 
