@@ -1,4 +1,4 @@
-// First, I need to create an array of strings that will represent my words. 10 should suffice.
+// First, I need to create an array of strings that will represent my words. 10ish should suffice.
 var words = ["halo", "persona", "pacman", "mario", "zelda", "metroid", "sword", "lives", "diablo", "monsters", 
     "battlefield"];
 
@@ -36,6 +36,7 @@ var wins = 0;
 var rightGuesses = 0;
 
 function lose() {
+    alert("You lose!");
     losses += 1;
     document.getElementById("loss").innerHTML = losses;
     word = getWord();
@@ -49,6 +50,7 @@ function lose() {
 }
 
 function win() {
+    alert("You win!");
     wins += 1;
     document.getElementById("win").innerHTML = wins;
     word = getWord();
@@ -67,6 +69,7 @@ function win() {
 function guess(word, spaces, key) {
     //First I should compare the key pressed to the word
     if (word.includes(key)) {
+        //loop through the array to make sure it is finding all the correct letters
         for (i = 0; i < word.length; i++) {
             if (word[i] === key) {
                 spaces[i] = key;
@@ -74,12 +77,15 @@ function guess(word, spaces, key) {
                 rightGuesses += 1;
             }
         }
+        //this is outside the loop to ensure guesses only go down by one per key press
         guesses -= 1;
         document.getElementById("left").innerHTML = guesses;
         
+        //if key pressed is not already in the array of correct keys pressed, add key to it
         if (!rightArray.includes(key)) {
             rightArray.push(key);
             console.log(rightArray);
+        //Otherwise, negate the guess by manipulating variables so as not to reduce guesses from keys already pressed
         } else {
             guesses += 1;
             document.getElementById("left").innerHTML = guesses;
@@ -87,13 +93,15 @@ function guess(word, spaces, key) {
             console.log(guesses);
             console.log(rightGuesses);
         }
-        
+        //If the number of correct guesses = word's length, user wins
+        //If guesses = 0, user loses
         if (rightGuesses === word.length) {
             win();
         } else if (guesses === 0) {
             lose();
         }
 
+        //if a wrong key hasn't already been pressed, then push key to array and reduce guesses
     } else if (!guessArray.includes(key)) {
         guessArray.push(key);
         document.getElementById("guess").innerHTML = guessArray.join(", ");
